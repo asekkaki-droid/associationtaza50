@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}إضافة مقال جديد{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('main.dashboard') }}">لوحة التحكم</a></li>
+                    <li class="breadcrumb-item active">إضافة مقال جديد</li>
+                </ol>
+            </nav>
+
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white py-3">
+                    <h4 class="mb-0 text-primary">
+                        <i class="fas fa-pen-nib me-2"></i>كتابة مقال جديد
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST">
+                        <div class="mb-4">
+                            <label for="title" class="form-label">عنوان المقال</label>
+                            <input type="text" class="form-control" id="title" name="title" required
+                                placeholder="أدخل عنوان المقال هنا...">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="content" class="form-label">محتوى المقال</label>
+                            <textarea class="form-control" id="content" name="content" rows="10" required
+                                placeholder="اكتب تفاصيل المقال هنا..."></textarea>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="{{ url_for('main.dashboard') }}"
+                                class="btn btn-outline-secondary me-md-2">إلغاء</a>
+                            <button type="submit" class="btn btn-primary px-5">نشر المقال</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

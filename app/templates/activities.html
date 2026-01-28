@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}أنشطتنا{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h2 class="section-title">أنشطتنا ومشاريعنا</h2>
+    <p class="text-center text-muted mb-5">اكتشف أعمالنا الميدانية وتأثيرنا في المجتمع</p>
+
+    <div class="row g-4">
+        {% for activity in activities %}
+        <div class="col-md-6 col-lg-4">
+            <div class="activity-card">
+                <div class="activity-image">
+                    {% if activity.image_url %}
+                    <img src="{{ url_for('static', filename='img/' + activity.image_url) }}" alt="{{ activity.title }}">
+                    {% else %}
+                    <img src="{{ url_for('static', filename='img/activity-' + ((loop.index % 2) + 1)|string + '.jpg') }}"
+                        alt="{{ activity.title }}">
+                    {% endif %}
+                    <span class="activity-badge">
+                        <i class="fas fa-calendar me-1"></i>
+                        {{ activity.date.strftime('%d/%m/%Y') }}
+                    </span>
+                </div>
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-3">{{ activity.title }}</h5>
+                    <p class="card-text text-muted">{{ activity.description }}</p>
+                    <div class="d-flex align-items-center mt-3">
+                        <span class="badge bg-success me-2">
+                            <i class="fas fa-check-circle me-1"></i>
+                            نشاط
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <!-- Show placeholder activities when database is empty -->
+        <div class="col-md-6 col-lg-4">
+            <div class="activity-card fade-in-up">
+                <div class="activity-image">
+                    <img src="{{ url_for('static', filename='img/activity-1.jpg') }}" alt="عمل تضامني">
+                    <span class="activity-badge">
+                        <i class="fas fa-calendar me-1"></i>
+                        15/01/2026
+                    </span>
+                </div>
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-3">عمل تضامني مجتمعي</h5>
+                    <p class="card-text text-muted">توزيع سلال غذائية على العائلات المحتاجة وزرع الأشجار في أحياء تازة.
+                    </p>
+                    <div class="d-flex align-items-center mt-3">
+                        <span class="badge bg-success me-2">
+                            <i class="fas fa-check-circle me-1"></i>
+                            مكتمل
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="activity-card fade-in-up" style="animation-delay: 0.1s;">
+                <div class="activity-image">
+                    <img src="{{ url_for('static', filename='img/activity-2.jpg') }}" alt="مهرجان ثقافي">
+                    <span class="activity-badge">
+                        <i class="fas fa-calendar me-1"></i>
+                        20/01/2026
+                    </span>
+                </div>
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-3">مهرجان تازة الثقافي</h5>
+                    <p class="card-text text-muted">احتفال بالثراء الثقافي لمنطقتنا مع موسيقى تقليدية، رقصات وحرف يدوية
+                        محلية.</p>
+                    <div class="d-flex align-items-center mt-3">
+                        <span class="badge bg-success me-2">
+                            <i class="fas fa-check-circle me-1"></i>
+                            مكتمل
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="activity-card fade-in-up" style="animation-delay: 0.2s;">
+                <div class="activity-image">
+                    <img src="{{ url_for('static', filename='img/activity-1.jpg') }}" alt="تكوين الشباب">
+                    <span class="activity-badge">
+                        <i class="fas fa-calendar me-1"></i>
+                        05/02/2026
+                    </span>
+                </div>
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-3">تكوين وتوجيه الشباب</h5>
+                    <p class="card-text text-muted">برنامج تكوين مهني ومرافقة لشباب المنطقة.</p>
+                    <div class="d-flex align-items-center mt-3">
+                        <span class="badge bg-primary me-2">
+                            <i class="fas fa-hourglass-half me-1"></i>
+                            جاري التنفيذ
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

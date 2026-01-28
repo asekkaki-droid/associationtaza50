@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}الرئيسية{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<header class="hero-section text-white d-flex align-items-center" style="background-color: #333; min-height: 500px;">
+    <!-- Fallback BG if image missing -->
+    <div class="container text-center">
+        <h1>مرحباً بكم في جمعية تازة</h1>
+        <p class="lead mb-4">معاً من أجل مستقبل أفضل وأكثر تضامناً.</p>
+        <a href="{{ url_for('main.join') }}" class="btn btn-primary btn-lg me-2">كن متطوعاً</a>
+        <a href="{{ url_for('main.activities') }}" class="btn btn-outline-light btn-lg">أنشطتنا</a>
+    </div>
+</header>
+
+<!-- Missions Section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="section-title">مهامنا</h2>
+        <div class="row text-center mt-4">
+            <div class="col-md-4 mb-4">
+                <div class="p-4">
+                    <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                    <h4>التضامن</h4>
+                    <p>دعم الفئات الهشة وتعزيز الروابط الاجتماعية في تازة.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="p-4">
+                    <i class="fas fa-book-reader fa-3x text-primary mb-3"></i>
+                    <h4>الثقافة</h4>
+                    <p>النهوض بالثروة الثقافية والتاريخية لمنطقتنا.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="p-4">
+                    <i class="fas fa-hand-holding-heart fa-3x text-primary mb-3"></i>
+                    <h4>التطوع</h4>
+                    <p>تشجيع المشاركة المواطنة وانخراط الشباب.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Latest News Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title">آخر الأخبار</h2>
+        <div class="row mt-4">
+            {% for item in news %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <small class="text-muted">{{ item.date_posted.strftime('%d-%m-%Y') }}</small>
+                        <h5 class="card-title mt-2">{{ item.title }}</h5>
+                        <p class="card-text">{{ item.content[:100] }}...</p>
+                        <a href="{{ url_for('main.news') }}" class="btn btn-sm btn-outline-primary">اقرأ المزيد</a>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-12 text-center">
+                <p>لا توجد أخبار في الوقت الحالي.</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ url_for('main.news') }}" class="btn btn-primary">مشاهدة جميع الأخبار</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

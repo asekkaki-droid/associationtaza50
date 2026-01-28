@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}المعرض{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h2 class="section-title">المعرض الإعلامي</h2>
+    <p class="text-center text-muted mb-5">اكتشف أهم لحظاتنا من خلال الصور</p>
+
+    <div class="gallery-grid">
+        {% for item in items %}
+        <div class="gallery-item">
+            {% if item.media_file %}
+            <img src="{{ url_for('static', filename='img/' + item.media_file) }}" alt="{{ item.title }}">
+            {% else %}
+            <img src="{{ url_for('static', filename='img/activity-1.jpg') }}" alt="{{ item.title }}">
+            {% endif %}
+            <div class="gallery-overlay">
+                <div class="gallery-overlay-text">{{ item.title }}</div>
+            </div>
+        </div>
+        {% else %}
+        <!-- Show placeholder images when no gallery items exist -->
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='img/activity-1.jpg') }}" alt="عمل مجتمعي">
+            <div class="gallery-overlay">
+                <div class="gallery-overlay-text">عمل مجتمعي</div>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='img/activity-2.jpg') }}" alt="حدث ثقافي">
+            <div class="gallery-overlay">
+                <div class="gallery-overlay-text">حدث ثقافي</div>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='img/taza-hero.jpg') }}" alt="مدينتنا تازة">
+            <div class="gallery-overlay">
+                <div class="gallery-overlay-text">مدينتنا تازة</div>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='img/activity-1.jpg') }}" alt="المتطوعون في العمل">
+            <div class="gallery-overlay">
+                <div class="gallery-overlay-text">المتطوعون في العمل</div>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='img/activity-2.jpg') }}" alt="مهرجان ثقافي">
+            <div class="gallery-overlay">
+                <div class="gallery-overlay-text">مهرجان ثقافي</div>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='img/taza-hero.jpg') }}" alt="تراث تازة">
+            <div class="gallery-overlay">
+                <div class="gallery-overlay-text">تراث تازة</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
